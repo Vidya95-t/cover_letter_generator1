@@ -1,9 +1,5 @@
 import streamlit as st
 from transformers import pipeline
-import language_tool_python
-
-# Initialize grammar tool
-tool = language_tool_python.LanguageTool('en-US')
 
 # Page configuration
 st.set_page_config(page_title="Cover Letter Generator", layout="centered")
@@ -43,9 +39,9 @@ Make it formal and well-structured.
             def clean_text(text, prompt):
                 return text[len(prompt):].strip().replace('\n\n', '\n')
 
-            def correct_grammar(text):
-                matches = tool.check(text)
-                return language_tool_python.utils.correct(text, matches)
+            # def correct_grammar(text):
+            #     matches = tool.check(text)
+            #     return language_tool_python.utils.correct(text, matches)
 
             def is_valid(text):
                 return len(text.split()) > 80 and "job-shopping" not in text.lower()
@@ -58,8 +54,9 @@ Make it formal and well-structured.
             for r in results:
                 raw = clean_text(r['generated_text'], prompt)
                 if is_valid(raw):
-                    corrected = correct_grammar(raw)
-                    filtered_outputs.append(corrected)
+                    # corrected = correct_grammar(raw)
+                    # filtered_outputs.append(corrected)
+                     filtered_outputs.append(raw)
 
             # Display results
             if not filtered_outputs:
