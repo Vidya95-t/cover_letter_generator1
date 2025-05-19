@@ -56,7 +56,7 @@ Make it formal and well-structured.
                 if is_valid(raw):
                     # corrected = correct_grammar(raw)
                     # filtered_outputs.append(corrected)
-                     filtered_outputs.append(raw)
+                    filtered_outputs.append(raw)
 
             # Display results
             if not filtered_outputs:
